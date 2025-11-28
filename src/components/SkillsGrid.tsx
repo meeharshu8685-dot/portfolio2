@@ -34,10 +34,14 @@ export const SkillsGrid = () => {
         <motion.div
           key={skill}
           variants={itemVariants}
-          className="glass rounded-lg p-4 text-center hover:bg-white/10 transition-colors cursor-default"
-          whileHover={{ scale: 1.05, y: -5 }}
+          className="glass rounded-lg p-4 text-center transition-all duration-300 cursor-default hover:opacity-90"
+          style={{ color: 'var(--text-primary)' }}
+          whileHover={{ 
+            scale: 1.05, 
+            y: -5,
+          }}
         >
-          <span className="text-white/90 font-medium">{skill}</span>
+          <span className="font-medium">{skill}</span>
         </motion.div>
       ))}
     </motion.div>

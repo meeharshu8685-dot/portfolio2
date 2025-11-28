@@ -65,7 +65,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </h2>
                 <button
                   onClick={onClose}
-                  className="text-white/60 hover:text-white transition-colors p-2"
+                  className="transition-colors p-2"
+                  style={{ color: 'var(--text-secondary)' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
                   aria-label="Close modal"
                 >
                   <svg
@@ -99,17 +102,17 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Description */}
-              <p className="text-white/80 text-lg leading-relaxed mb-6">
+              <p className="text-lg leading-relaxed mb-6 transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
                 {project.description}
               </p>
 
               {/* Credits */}
               {project.credits && (
-                <div className="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h3 className="text-sm font-semibold text-white/60 mb-1">
+                <div className="mb-6 p-4 glass rounded-lg">
+                  <h3 className="text-sm font-semibold mb-1 transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
                     Credits
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-base transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                     {project.credits}
                   </p>
                 </div>
@@ -117,7 +120,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
               {/* Technologies */}
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-3 text-white">
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                   Technologies Used
                 </h3>
                 <div className="flex flex-wrap gap-2">

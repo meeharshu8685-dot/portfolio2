@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
         {/* Toggle Switch */}
         <motion.button
           onClick={toggleTheme}
-          className="relative w-24 h-12 rounded-full overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0d0d0d] transition-all shadow-lg"
+          className="relative w-24 h-12 rounded-full overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] transition-all shadow-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}

@@ -70,7 +70,8 @@ export const Hero = () => {
 
           {/* Typing Animation */}
           <motion.p
-            className="text-xl md:text-2xl font-semibold text-gray-300 mt-3 mb-6 min-h-[2rem]"
+            className="text-xl md:text-2xl font-semibold mt-3 mb-6 min-h-[2rem] transition-colors duration-300"
+            style={{ color: 'var(--text-secondary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -80,7 +81,8 @@ export const Hero = () => {
 
           {/* Description */}
           <motion.p
-            className="text-lg sm:text-xl text-white/70 mb-8 max-w-xl"
+            className="text-lg sm:text-xl mb-8 max-w-xl transition-colors duration-300"
+            style={{ color: 'var(--text-secondary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -107,7 +109,8 @@ export const Hero = () => {
               <motion.a
                 href={siteData.resumePath}
                 download
-                className="px-8 py-3 glass text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-all text-center"
+                className="px-8 py-3 glass rounded-lg font-semibold text-lg transition-all text-center hover:opacity-90"
+                style={{ color: 'var(--text-primary)' }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

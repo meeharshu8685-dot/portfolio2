@@ -83,17 +83,17 @@ export const ExperienceTimeline = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                   >
-                    <div className="glass rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <div className="glass rounded-xl p-6 transition-all duration-300 hover:opacity-90">
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-purple-400 font-bold text-lg">
                           {item.year}
                         </span>
                         <div className="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-2">
+                      <h3 className="text-xl font-bold mb-2 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                         {item.title}
                       </h3>
-                      <p className="text-white/70 mb-4">
+                      <p className="mb-4 transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
                         {item.description}
                       </p>
                       <div className="flex flex-wrap gap-2">

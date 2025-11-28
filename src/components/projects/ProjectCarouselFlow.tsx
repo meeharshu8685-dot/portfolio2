@@ -51,7 +51,7 @@ export const ProjectCarouselFlow = ({
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative h-full bg-white/5 rounded-xl overflow-hidden group cursor-pointer">
+                <div className="relative h-full glass rounded-xl overflow-hidden group cursor-pointer">
                   {/* Project Image */}
                   <div className="relative h-[300px] overflow-hidden rounded-t-xl">
                     <img

@@ -40,10 +40,10 @@ export const About = () => {
           </h2>
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-semibold mb-2 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                 Bachelors in Computer Science
               </h3>
-              <p className="text-white/70">BITS Pilani (Ongoing)</p>
+              <p className="transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>BITS Pilani (Ongoing)</p>
             </div>
           </div>
         </div>

@@ -18,7 +18,8 @@ export const AboutCard = () => {
         About Me
       </motion.h2>
       <motion.p
-        className="text-white/80 text-lg leading-relaxed mb-4"
+        className="text-lg leading-relaxed mb-4 transition-colors duration-300"
+        style={{ color: 'var(--text-secondary)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
@@ -27,7 +28,8 @@ export const AboutCard = () => {
         AI/ML, data analytics and building user-focused web products.
       </motion.p>
       <motion.p
-        className="text-white/70 leading-relaxed"
+        className="leading-relaxed transition-colors duration-300"
+        style={{ color: 'var(--text-secondary)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
