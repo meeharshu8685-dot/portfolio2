@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { AnimatedPage } from '../components/AnimatedPage';
 import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
+import { ExperienceTimeline } from '../components/about/ExperienceTimeline';
+import { SkillsProgressBars } from '../components/skills/SkillsProgressBars';
 
 export const About = () => {
   return (
@@ -19,6 +21,10 @@ export const About = () => {
           <AboutCard />
         </div>
       </section>
+
+      <ExperienceTimeline />
+
+      <SkillsProgressBars />
 
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gradient text-center">
