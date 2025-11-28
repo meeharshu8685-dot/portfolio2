@@ -12,8 +12,11 @@ export default function SpiderBlinkClimbLook({
   size = 96,
   maxClimb = 220,
   minY = 40,
-  maxY = 260,
+  maxY,
 }: SpiderBlinkClimbLookProps) {
+  // Calculate maxY from maxClimb if not explicitly provided
+  const calculatedMaxY = maxY ?? minY + maxClimb;
+  
   const [isBlinking, setIsBlinking] = useState(false);
   const [mouseX, setMouseX] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -75,7 +78,7 @@ export default function SpiderBlinkClimbLook({
         const currentY = y.get();
         const newY = Math.max(
           minY,
-          Math.min(maxY, currentY - scrollDelta * 0.5)
+          Math.min(calculatedMaxY, currentY - scrollDelta * 0.5)
         );
 
         y.set(newY);
@@ -87,7 +90,7 @@ export default function SpiderBlinkClimbLook({
       window.removeEventListener('scroll', handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [y, minY, maxY, prefersReducedMotion]);
+  }, [y, minY, calculatedMaxY, prefersReducedMotion]);
 
   // Mouse tracking for rotation
   const handleMouseMove = useCallback(
