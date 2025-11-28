@@ -18,7 +18,7 @@
     "lottie-react": "^2.4.0",
     "@react-three/fiber": "^8.15.11",
     "@react-three/drei": "^9.88.13",
-    "three": "^0.158.0",
+    "three": "^0.159.0",
     "typed.js": "^2.1.0",
     "swiper": "^11.0.5"
   },
