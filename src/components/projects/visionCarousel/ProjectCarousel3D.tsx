@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Project } from "../../../data/projects";
 
@@ -15,6 +15,29 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
   const x = useMotionValue(0);
   const springConfig = { stiffness: 140, damping: 18 };
   const xSpring = useSpring(x, springConfig);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Navigate to specific index
+  const goToIndex = useCallback((index: number) => {
+    if (index >= 0 && index < projects.length) {
+      setActiveIndex(index);
+      x.set(0);
+    }
+  }, [projects.length, x]);
+
+  // Navigate to next card
+  const goToNext = useCallback(() => {
+    if (activeIndex < projects.length - 1) {
+      goToIndex(activeIndex + 1);
+    }
+  }, [activeIndex, projects.length, goToIndex]);
+
+  // Navigate to previous card
+  const goToPrevious = useCallback(() => {
+    if (activeIndex > 0) {
+      goToIndex(activeIndex - 1);
+    }
+  }, [activeIndex, goToIndex]);
 
   // Calculate card positions
   const getCardStyle = (index: number) => {
@@ -64,10 +87,10 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
     const threshold = 80;
     
     if (Math.abs(info.offset.x) > threshold) {
-      if (info.offset.x > 0 && activeIndex > 0) {
-        setActiveIndex(activeIndex - 1);
-      } else if (info.offset.x < 0 && activeIndex < projects.length - 1) {
-        setActiveIndex(activeIndex + 1);
+      if (info.offset.x > 0) {
+        goToPrevious();
+      } else {
+        goToNext();
       }
     }
     
@@ -78,23 +101,131 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft" && activeIndex > 0) {
-        setActiveIndex(activeIndex - 1);
-      } else if (e.key === "ArrowRight" && activeIndex < projects.length - 1) {
-        setActiveIndex(activeIndex + 1);
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNext();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goToIndex(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goToIndex(projects.length - 1);
       }
     };
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [activeIndex, projects.length]);
+  }, [activeIndex, projects.length, goToNext, goToPrevious, goToIndex]);
+
+  // Mouse wheel scroll
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Throttle scroll events
+      scrollTimeoutRef.current = setTimeout(() => {
+        if (e.deltaY > 0) {
+          goToNext();
+        } else if (e.deltaY < 0) {
+          goToPrevious();
+        }
+      }, 100);
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", handleWheel);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [goToNext, goToPrevious]);
 
   if (projects.length === 0) {
     return <div className="text-center text-white/70">No projects available</div>;
   }
 
   return (
-    <div className="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
+    <div 
+      className="relative w-full h-[600px] flex items-center justify-center overflow-hidden"
+      role="region"
+      aria-label="Projects carousel"
+      aria-live="polite"
+      aria-atomic="false"
+    >
+      {/* Navigation Arrow - Previous */}
+      <button
+        onClick={goToPrevious}
+        disabled={activeIndex === 0}
+        className="absolute left-4 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+        style={{
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          color: "var(--text-primary)",
+        }}
+        aria-label="Previous project"
+        aria-disabled={activeIndex === 0}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      {/* Navigation Arrow - Next */}
+      <button
+        onClick={goToNext}
+        disabled={activeIndex === projects.length - 1}
+        className="absolute right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+        style={{
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          color: "var(--text-primary)",
+        }}
+        aria-label="Next project"
+        aria-disabled={activeIndex === projects.length - 1}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+
       {/* 3D Perspective Container */}
       <div
         ref={containerRef}
@@ -103,6 +234,9 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
           perspective: "2000px",
           perspectiveOrigin: "50% 50%",
         }}
+        tabIndex={0}
+        role="group"
+        aria-label={`Project ${activeIndex + 1} of ${projects.length}`}
       >
         {/* Cards Container */}
         <motion.div
@@ -125,7 +259,7 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
             return (
               <motion.div
                 key={project.id}
-                className="absolute w-[400px] h-[500px] cursor-grab active:cursor-grabbing"
+                className="absolute w-[400px] h-[500px] cursor-grab active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
                 initial={false}
                 animate={{
                   scale: style.scale,
@@ -147,10 +281,20 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
                 }}
                 onClick={() => {
                   if (!isDragging) {
-                    setActiveIndex(index);
+                    goToIndex(index);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    goToIndex(index);
                   }
                 }}
                 whileHover={isActive ? { scale: 1.02 } : {}}
+                tabIndex={isActive ? 0 : -1}
+                role="button"
+                aria-label={`View ${project.name} project`}
+                aria-pressed={isActive}
               >
                 {/* Glassmorphism Card */}
                 <div
@@ -262,17 +406,24 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
         </motion.div>
 
         {/* Navigation Dots */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
+        <div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-50"
+          role="tablist"
+          aria-label="Project navigation"
+        >
           {projects.map((_, index) => (
             <button
               key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              onClick={() => goToIndex(index)}
+              className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
                 index === activeIndex
                   ? "bg-white w-8"
-                  : "bg-white/30 hover:bg-white/50"
+                  : "bg-white/30 hover:bg-white/50 w-2"
               }`}
-              aria-label={`Go to project ${index + 1}`}
+              aria-label={`Go to project ${index + 1}: ${projects[index]?.name}`}
+              aria-selected={index === activeIndex}
+              role="tab"
+              tabIndex={index === activeIndex ? 0 : -1}
             />
           ))}
         </div>
