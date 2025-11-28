@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Typed from 'typed.js';
 import { siteData } from '../data/siteData';
 import SpiderBlinkClimbLook from './SpiderBlinkClimbLook';
+import ScaleTiltReveal from './scroll/ScaleTiltReveal';
 
 export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
@@ -50,53 +51,33 @@ export const Hero = () => {
     <section className="min-h-screen w-full px-6 pt-24 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* LEFT SIDE - Text + Typing Animation */}
-        <motion.div
-          className="text-left"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+        <ScaleTiltReveal maxTilt={15} className="text-left">
+          <div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
             Hi, I'm{' '}
             <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
               {siteData.name}
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Typing Animation */}
-          <motion.p
+          <p
             className="text-xl md:text-2xl font-semibold mt-3 mb-6 min-h-[2rem] transition-colors duration-300"
             style={{ color: 'var(--text-secondary)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
           >
             <span ref={typedRef}></span>
-          </motion.p>
+          </p>
 
           {/* Description */}
-          <motion.p
+          <p
             className="text-lg sm:text-xl mb-8 max-w-xl transition-colors duration-300"
             style={{ color: 'var(--text-secondary)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
           >
             {siteData.tagline}
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
+          <div className="flex flex-col sm:flex-row gap-4">
             <motion.button
               onClick={scrollToProjects}
               className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-lg hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg shadow-purple-500/50"
@@ -117,18 +98,16 @@ export const Hero = () => {
                 Download Resume
               </motion.a>
             )}
-          </motion.div>
-        </motion.div>
+          </div>
+          </div>
+        </ScaleTiltReveal>
 
         {/* RIGHT SIDE - Spider Animation */}
-        <motion.div
-          className="flex justify-center items-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-        >
-          <SpiderBlinkClimbLook size={96} maxClimb={220} />
-        </motion.div>
+        <ScaleTiltReveal maxTilt={10}>
+          <div className="flex justify-center items-center">
+            <SpiderBlinkClimbLook size={96} maxClimb={220} />
+          </div>
+        </ScaleTiltReveal>
       </div>
     </section>
   );

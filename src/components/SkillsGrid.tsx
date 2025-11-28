@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { siteData } from '../data/siteData';
+import ScaleTiltReveal from './scroll/ScaleTiltReveal';
 
 export const SkillsGrid = () => {
   const containerVariants = {
@@ -31,18 +32,19 @@ export const SkillsGrid = () => {
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
     >
       {siteData.skills.map((skill) => (
-        <motion.div
-          key={skill}
-          variants={itemVariants}
-          className="glass rounded-lg p-4 text-center transition-all duration-300 cursor-default hover:opacity-90"
-          style={{ color: 'var(--text-primary)' }}
-          whileHover={{ 
-            scale: 1.05, 
-            y: -5,
-          }}
-        >
-          <span className="font-medium">{skill}</span>
-        </motion.div>
+        <ScaleTiltReveal key={skill} maxTilt={10}>
+          <motion.div
+            variants={itemVariants}
+            className="glass rounded-lg p-4 text-center transition-all duration-300 cursor-default hover:opacity-90"
+            style={{ color: 'var(--text-primary)' }}
+            whileHover={{ 
+              scale: 1.05, 
+              y: -5,
+            }}
+          >
+            <span className="font-medium">{skill}</span>
+          </motion.div>
+        </ScaleTiltReveal>
       ))}
     </motion.div>
   );
