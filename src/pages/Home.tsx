@@ -13,6 +13,7 @@ export const Home = () => {
           <SpiderBlinkClimbLook size={96} maxClimb={220} />
         </div>
         <Hero />
+      </section>
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <AboutCard />
       </section>
