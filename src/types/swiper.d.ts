@@ -1,17 +1,12 @@
 declare module 'swiper/react' {
-  import { SwiperOptions } from 'swiper';
   import { ReactNode } from 'react';
 
-  export interface SwiperProps extends SwiperOptions {
-    children?: ReactNode;
-    className?: string;
-    onSwiper?: (swiper: any) => void;
+  export interface SwiperProps {
+    [key: string]: any;
   }
 
   export interface SwiperSlideProps {
-    children?: ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
+    [key: string]: any;
   }
 
   export const Swiper: React.FC<SwiperProps>;
