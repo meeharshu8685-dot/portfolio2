@@ -51,8 +51,8 @@ export const ProjectCarouselFlow = ({
           onTouchStart={handleMouseDown}
           onTouchMove={handleMouseMove}
           onTouchEnd={handleMouseUp}
-          onSliderMove={() => {
-            isDragging.current = true;
+          onSlideChange={() => {
+            isDragging.current = false;
           }}
           effect="coverflow"
           grabCursor={true}
