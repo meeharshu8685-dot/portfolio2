@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { experienceTimeline, TimelineItem } from '../../data/experienceTimeline';
+import { experienceTimeline } from '../../data/experienceTimeline';
 
 export const ExperienceTimeline = () => {
   const containerVariants = {
