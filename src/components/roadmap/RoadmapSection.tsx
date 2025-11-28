@@ -10,19 +10,19 @@ export const RoadmapSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#0d0d0d] py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen bg-[#0d0d0d] py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         {/* Title Section */}
         <motion.div
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Roadmap & Goals
           </h2>
-          <p className="text-white/60 text-base sm:text-lg md:text-xl px-4">
+          <p className="text-white/60 text-lg md:text-xl">
             My long-term growth plan (2025 → 2028)
           </p>
         </motion.div>
@@ -186,7 +186,7 @@ export const RoadmapSection = () => {
           <div className="lg:hidden">
             <div className="relative">
               {/* Vertical Line */}
-              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-indigo-500 to-blue-500" />
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-indigo-500 to-blue-500" />
 
               {/* Nodes */}
               <div className="space-y-12">
@@ -194,11 +194,11 @@ export const RoadmapSection = () => {
                   const isOpen = openId === item.id;
 
                   return (
-                    <div key={item.id} className="relative pl-16 sm:pl-20">
+                    <div key={item.id} className="relative pl-20">
                       {/* Node Circle */}
                       <motion.button
                         onClick={() => toggleNode(item.id)}
-                        className="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-2 sm:border-4 border-[#0d0d0d] shadow-lg cursor-pointer z-10"
+                        className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 border-[#0d0d0d] shadow-lg cursor-pointer z-10"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{

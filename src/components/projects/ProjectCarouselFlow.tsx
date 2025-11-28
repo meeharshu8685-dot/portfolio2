@@ -115,10 +115,10 @@ export const ProjectCarouselFlow = ({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gradient">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
           My Projects
         </h2>
-        <p className="text-white/60 text-base sm:text-lg md:text-xl italic px-4">
+        <p className="text-white/60 text-lg md:text-xl italic">
           "Projects reflect skills more than certificates."
         </p>
       </motion.div>

@@ -33,10 +33,10 @@ const glowColorMap: Record<string, string> = {
 
 export const SkillGlowCards = () => {
   return (
-    <section className="py-12 sm:py-20 bg-[#0d0d0d]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-20 bg-[#0d0d0d]">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-10 text-center"
+          className="text-3xl md:text-4xl font-bold text-white mb-10 text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -44,7 +44,7 @@ export const SkillGlowCards = () => {
           Skills
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => {
             const IconComponent = iconMap[skill.icon];
             const glowColor = glowColorMap[skill.icon] || 'rgba(168, 85, 247, 0.5)';
@@ -68,21 +68,21 @@ export const SkillGlowCards = () => {
                   className={`relative before:absolute before:inset-0 before:rounded-2xl before:p-[2px] before:bg-gradient-to-r ${skill.glow} before:opacity-80 before:-z-[1]`}
                 >
                   {/* Inner Card */}
-                  <div className="bg-[#0b0b0b] rounded-2xl p-5 sm:p-6 shadow-[0_0_18px_rgba(168,85,247,0.45)]">
+                  <div className="bg-[#0b0b0b] rounded-2xl p-6 shadow-[0_0_18px_rgba(168,85,247,0.45)]">
                     {/* Icon */}
-                    <div className="mb-3 sm:mb-4 flex justify-center">
+                    <div className="mb-4 flex justify-center">
                       {IconComponent && (
-                        <IconComponent className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+                        <IconComponent className="w-12 h-12 text-white" />
                       )}
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 text-center">
+                    <h3 className="text-xl font-bold text-white mb-3 text-center">
                       {skill.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-300 text-xs sm:text-sm text-center leading-relaxed">
+                    <p className="text-gray-300 text-sm text-center leading-relaxed">
                       {skill.desc}
                     </p>
                   </div>

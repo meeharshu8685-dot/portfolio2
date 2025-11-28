@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -13,20 +14,22 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/animations" element={<AnimationsPage />} />
-          <Route path="/roadmap" element={<Roadmap />} />
-        </Routes>
-      </AnimatePresence>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/animations" element={<AnimationsPage />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
