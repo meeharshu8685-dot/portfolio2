@@ -190,7 +190,7 @@ export const RoadmapSection = () => {
 
               {/* Nodes */}
               <div className="space-y-12">
-                {roadmap.map((item, index) => {
+                {roadmap.map((item) => {
                   const isOpen = openId === item.id;
 
                   return (
