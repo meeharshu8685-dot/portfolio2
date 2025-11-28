@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Theme = 'dark' | 'light' | 'purple' | 'blue' | 'green';
+export type Theme = 'dark' | 'light' | 'purple' | 'blue' | 'green';
 
 interface ThemeContextType {
   theme: Theme;
@@ -11,19 +11,26 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = localStorage.getItem('theme');
-    return (saved as Theme) || 'dark';
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      return (saved as Theme) || 'dark';
+    }
+    return 'dark';
   });
 
   // Initialize theme on mount
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    if (typeof window !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
   }, []);
 
   // Update theme when it changes
   useEffect(() => {
-    localStorage.setItem('theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+    }
   }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
