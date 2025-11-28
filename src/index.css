@@ -37,6 +37,7 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --accent: #4f46e5;
+    --accent-50: rgba(79, 70, 229, 0.5);
   }
 
   [data-theme='light'] {
@@ -45,6 +46,7 @@
     --text-primary: #1a1a1a;
     --text-secondary: rgba(0, 0, 0, 0.7);
     --accent: #6366f1;
+    --accent-50: rgba(99, 102, 241, 0.5);
   }
 
   [data-theme='purple'] {
@@ -53,6 +55,7 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --accent: #a855f7;
+    --accent-50: rgba(168, 85, 247, 0.5);
   }
 
   [data-theme='blue'] {
@@ -61,6 +64,7 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --accent: #3b82f6;
+    --accent-50: rgba(59, 130, 246, 0.5);
   }
 
   [data-theme='green'] {
@@ -69,6 +73,7 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --accent: #10b981;
+    --accent-50: rgba(16, 185, 129, 0.5);
   }
 }
 
@@ -95,15 +100,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background-color: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-accent/50 rounded-full;
+  background-color: var(--accent-50);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-accent;
+  background-color: var(--accent);
 }
 
 /* Shimmer Animation */
