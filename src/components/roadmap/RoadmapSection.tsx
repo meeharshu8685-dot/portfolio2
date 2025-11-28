@@ -142,32 +142,32 @@ export const RoadmapSection = () => {
                             }}
                           >
                             <motion.div
-                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl"
+                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl max-w-md"
                               whileHover={{
                                 scale: 1.02,
                                 boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)',
                               }}
                             >
-                              <h3 className="text-xl font-bold text-white mb-2">
+                              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                                 {item.title}
                               </h3>
-                              <p className="text-purple-400 font-semibold mb-4">
+                              <p className="text-purple-400 font-semibold mb-5 text-base md:text-lg">
                                 {item.primaryFocus}
                               </p>
-                              <ul className="space-y-2 mb-4">
+                              <ul className="space-y-3 mb-5">
                                 {item.bullets.map((bullet, idx) => (
                                   <li
                                     key={idx}
-                                    className="text-white/70 text-sm flex items-start gap-2"
+                                    className="text-white/70 text-sm md:text-base flex items-start gap-3 leading-relaxed"
                                   >
-                                    <span className="text-purple-400 mt-1">•</span>
+                                    <span className="text-purple-400 mt-1.5 flex-shrink-0">•</span>
                                     <span>{bullet}</span>
                                   </li>
                                 ))}
                               </ul>
                               <div className="pt-4 border-t border-white/10">
-                                <p className="text-blue-400 text-sm font-medium">
-                                  <span className="text-white/60">Goal: </span>
+                                <p className="text-blue-400 text-sm md:text-base font-medium leading-relaxed">
+                                  <span className="text-white/60 font-semibold">Goal: </span>
                                   {item.outcomeGoal}
                                 </p>
                               </div>
@@ -249,32 +249,32 @@ export const RoadmapSection = () => {
                             className="overflow-hidden"
                           >
                             <motion.div
-                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl mt-4"
+                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl mt-4"
                               whileHover={{
                                 scale: 1.01,
                                 boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)',
                               }}
                             >
-                              <h3 className="text-xl font-bold text-white mb-2">
+                              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                                 {item.title}
                               </h3>
-                              <p className="text-purple-400 font-semibold mb-4">
+                              <p className="text-purple-400 font-semibold mb-5 text-base md:text-lg">
                                 {item.primaryFocus}
                               </p>
-                              <ul className="space-y-2 mb-4">
+                              <ul className="space-y-3 mb-5">
                                 {item.bullets.map((bullet, idx) => (
                                   <li
                                     key={idx}
-                                    className="text-white/70 text-sm flex items-start gap-2"
+                                    className="text-white/70 text-sm md:text-base flex items-start gap-3 leading-relaxed"
                                   >
-                                    <span className="text-purple-400 mt-1">•</span>
+                                    <span className="text-purple-400 mt-1.5 flex-shrink-0">•</span>
                                     <span>{bullet}</span>
                                   </li>
                                 ))}
                               </ul>
                               <div className="pt-4 border-t border-white/10">
-                                <p className="text-blue-400 text-sm font-medium">
-                                  <span className="text-white/60">Goal: </span>
+                                <p className="text-blue-400 text-sm md:text-base font-medium leading-relaxed">
+                                  <span className="text-white/60 font-semibold">Goal: </span>
                                   {item.outcomeGoal}
                                 </p>
                               </div>
