@@ -1,116 +1,142 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
-import type { Theme } from '../contexts/ThemeContext';
-
-const themes = [
-  { id: 'dark', name: 'Dark', icon: '🌙', gradient: 'from-gray-800 to-gray-900' },
-  { id: 'light', name: 'Light', icon: '☀️', gradient: 'from-yellow-200 to-orange-200' },
-  { id: 'purple', name: 'Purple', icon: '💜', gradient: 'from-purple-600 to-indigo-600' },
-  { id: 'blue', name: 'Blue', icon: '💙', gradient: 'from-blue-600 to-cyan-600' },
-  { id: 'green', name: 'Green', icon: '💚', gradient: 'from-green-600 to-emerald-600' },
-] as const;
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const isDark = theme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-        className="relative"
+        initial={{ scale: 0, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.4, ease: 'easeOut' }}
+        className="flex flex-col items-center gap-4"
       >
-        {/* Toggle Button */}
+        {/* Toggle Switch */}
         <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Toggle theme"
+          onClick={toggleTheme}
+          className="relative w-24 h-12 rounded-full overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0d0d0d] transition-all shadow-lg"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
+          {/* Day Sky Background */}
           <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
+            className="absolute inset-0 bg-gradient-to-br from-sky-300 via-sky-400 to-blue-400"
+            animate={{ opacity: isDark ? 0 : 1 }}
             transition={{ duration: 0.3 }}
-            className="text-2xl"
           >
-            {themes.find((t) => t.id === theme)?.icon || '🎨'}
+            {/* Clouds */}
+            <div className="absolute inset-0">
+              <motion.div
+                className="absolute top-2 right-4 w-8 h-6 bg-white/80 rounded-full blur-sm"
+                animate={{ x: [0, 2, 0], opacity: [0.8, 0.9, 0.8] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="absolute top-3 right-8 w-6 h-5 bg-white/70 rounded-full blur-sm"
+                animate={{ x: [0, -1, 0], opacity: [0.7, 0.8, 0.7] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+              />
+              <motion.div
+                className="absolute top-1 right-12 w-7 h-5 bg-white/75 rounded-full blur-sm"
+                animate={{ x: [0, 1.5, 0], opacity: [0.75, 0.85, 0.75] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Night Sky Background */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black"
+            animate={{ opacity: isDark ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Stars */}
+            <div className="absolute inset-0">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  style={{
+                    left: `${15 + (i % 4) * 20}%`,
+                    top: `${20 + Math.floor(i / 4) * 30}%`,
+                  }}
+                  animate={{
+                    opacity: [0.3, 1, 0.3],
+                    scale: [0.8, 1.2, 0.8],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Slider - Sun when light, Moon when dark */}
+          <motion.div
+            className="absolute top-1 w-10 h-10 rounded-full shadow-lg flex items-center justify-center"
+            animate={{
+              x: isDark ? 50 : 0,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 25,
+            }}
+          >
+            {/* Sun (Light Mode) */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-500"
+              animate={{
+                opacity: isDark ? 0 : 1,
+                scale: isDark ? 0.8 : 1,
+              }}
+              transition={{ duration: 0.2 }}
+              style={{
+                boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-sm" />
+            </motion.div>
+
+            {/* Moon (Dark Mode) */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-200 to-gray-400"
+              animate={{
+                opacity: isDark ? 1 : 0,
+                scale: isDark ? 1 : 0.8,
+              }}
+              transition={{ duration: 0.2 }}
+              style={{
+                boxShadow: '0 4px 12px rgba(156, 163, 175, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3)',
+              }}
+            >
+              {/* Moon craters */}
+              <div className="absolute top-2 left-3 w-2 h-2 rounded-full bg-gray-500/40" />
+              <div className="absolute bottom-3 right-2 w-1.5 h-1.5 rounded-full bg-gray-500/30" />
+              <div className="absolute top-1/2 right-3 w-1 h-1 rounded-full bg-gray-500/50" />
+            </motion.div>
           </motion.div>
         </motion.button>
 
-        {/* Theme Options */}
-        <AnimatePresence>
-          {isOpen && (
-            <>
-              {/* Backdrop */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setIsOpen(false)}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm -z-10"
-              />
-
-              {/* Options Panel */}
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                className="absolute bottom-20 right-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl min-w-[200px]"
-              >
-                <p className="text-white/80 text-xs font-semibold mb-3 text-center">
-                  Choose Theme
-                </p>
-                <div className="space-y-2">
-                  {themes.map((themeOption) => (
-                    <motion.button
-                      key={themeOption.id}
-                      onClick={() => {
-                        setTheme(themeOption.id as Theme);
-                        setIsOpen(false);
-                      }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${
-                        theme === themeOption.id
-                          ? 'bg-gradient-to-r ' + themeOption.gradient + ' text-white'
-                          : 'bg-white/5 hover:bg-white/10 text-white/70'
-                      }`}
-                      whileHover={{ scale: 1.05, x: 4 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <span className="text-xl">{themeOption.icon}</span>
-                      <span className="text-sm font-medium">{themeOption.name}</span>
-                      {theme === themeOption.id && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="ml-auto"
-                        >
-                          <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </motion.div>
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+        {/* Label */}
+        <motion.p
+          className="text-sm text-white/70 font-medium"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+        >
+          {isDark ? 'Night Mode' : 'Day Mode'}
+        </motion.p>
       </motion.div>
     </div>
   );
 };
-
-
