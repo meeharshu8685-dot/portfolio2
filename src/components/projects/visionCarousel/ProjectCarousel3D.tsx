@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Project } from "../../../data/projects";
 
 interface ProjectCarousel3DProps {
@@ -59,7 +59,7 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
   };
 
   // Handle drag end - snap to nearest card
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: any, info: any) => {
     setIsDragging(false);
     const threshold = 80;
     
@@ -112,7 +112,7 @@ export const ProjectCarousel3D: React.FC<ProjectCarousel3DProps> = ({
           dragElastic={0.3}
           onDragStart={() => setIsDragging(true)}
           onDragEnd={handleDragEnd}
-          onDrag={(event, info) => {
+          onDrag={(_event, info) => {
             x.set(info.offset.x);
           }}
           style={{ x: xSpring }}
