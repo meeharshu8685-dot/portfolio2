@@ -58,7 +58,7 @@ export const Navbar = () => {
                   className="relative group"
                   aria-label={link.label}
                 >
-                  <span className="text-white/80 group-hover:text-white transition-colors">
+                  <span className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
                     {link.label}
                   </span>
                   <motion.div
@@ -120,9 +120,12 @@ export const Navbar = () => {
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`text-white/80 hover:text-white transition-colors text-base py-2 ${
-                        isActive ? 'text-white font-semibold border-l-2 border-purple-500 pl-3' : 'pl-3'
+                      className={`transition-colors text-base py-2 ${
+                        isActive ? 'font-semibold border-l-2 border-purple-500 pl-3' : 'pl-3'
                       }`}
+                      style={{ 
+                        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      }}
                     >
                       {link.label}
                     </Link>

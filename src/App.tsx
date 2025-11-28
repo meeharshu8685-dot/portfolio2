@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ThemeToggle } from './components/ThemeToggle';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <Navbar />
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
@@ -30,6 +31,7 @@ function App() {
           </Routes>
         </AnimatePresence>
         <Footer />
+        <ThemeToggle />
       </div>
     </ThemeProvider>
   );

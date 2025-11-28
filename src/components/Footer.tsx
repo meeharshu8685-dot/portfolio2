@@ -14,7 +14,7 @@ export const Footer = () => {
     <footer className="border-t border-white/10 mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-white/60 text-sm">
+          <div className="text-sm transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
             © {currentYear} {siteData.name}. All rights reserved.
           </div>
           <div className="flex items-center space-x-6">
@@ -24,7 +24,8 @@ export const Footer = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/60 hover:text-accent transition-colors"
+                className="transition-colors duration-300"
+                style={{ color: 'var(--text-secondary)' }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label={social.name}

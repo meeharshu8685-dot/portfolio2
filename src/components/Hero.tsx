@@ -47,7 +47,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen w-full bg-[#0d0d0d] px-6 pt-24">
+    <section className="min-h-screen w-full px-6 pt-24 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* LEFT SIDE - Text + Typing Animation */}
         <motion.div

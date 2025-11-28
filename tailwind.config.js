@@ -8,8 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0d0d0d',
-        accent: '#4f46e5',
+        background: 'var(--bg-primary)',
+        'background-secondary': 'var(--bg-secondary)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        accent: 'var(--accent)',
       },
       fontFamily: {
         sans: ['Inter', 'Poppins', 'sans-serif'],

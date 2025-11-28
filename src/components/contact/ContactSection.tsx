@@ -44,7 +44,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#0d0d0d] py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* LEFT COLUMN - Contact Card */}

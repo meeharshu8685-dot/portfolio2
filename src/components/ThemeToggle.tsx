@@ -10,7 +10,17 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+    <div 
+      className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[9999] pointer-events-auto"
+      style={{ 
+        position: 'fixed',
+        bottom: '2rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        willChange: 'transform',
+      }}
+    >
       <motion.div
         initial={{ scale: 0, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -130,7 +140,10 @@ export const ThemeToggle = () => {
 
         {/* Label */}
         <motion.p
-          className="text-sm text-white/70 font-medium"
+          className="text-sm font-medium transition-colors duration-300"
+          style={{ 
+            color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+          }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
         >

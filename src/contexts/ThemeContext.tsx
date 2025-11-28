@@ -22,6 +22,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       document.documentElement.setAttribute('data-theme', theme);
+      document.body.setAttribute('data-theme', theme);
+      // Apply theme class to body for additional styling
+      document.body.className = `theme-${theme}`;
     }
   }, []);
 
@@ -30,6 +33,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', theme);
       document.documentElement.setAttribute('data-theme', theme);
+      document.body.setAttribute('data-theme', theme);
+      // Update body class
+      document.body.className = `theme-${theme}`;
     }
   }, [theme]);
 

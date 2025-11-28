@@ -33,7 +33,7 @@ const glowColorMap: Record<string, string> = {
 
 export const SkillGlowCards = () => {
   return (
-    <section className="py-20 bg-[#0d0d0d]">
+    <section className="py-20 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-white mb-10 text-center"

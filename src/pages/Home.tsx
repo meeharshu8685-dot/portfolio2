@@ -2,7 +2,6 @@ import { AnimatedPage } from '../components/AnimatedPage';
 import { Hero } from '../components/Hero';
 import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
-import { ThemeToggle } from '../components/ThemeToggle';
 
 export const Home = () => {
   return (
@@ -17,8 +16,6 @@ export const Home = () => {
         </h2>
         <SkillsGrid />
       </section>
-      {/* Theme Toggle at bottom */}
-      <ThemeToggle />
     </AnimatedPage>
   );
 };
