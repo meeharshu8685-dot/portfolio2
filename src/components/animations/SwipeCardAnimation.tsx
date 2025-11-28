@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import type { PanInfo } from 'framer-motion';
 import { AnimationCard } from '../../data/animationCards';
 
 interface SwipeCardAnimationProps {
