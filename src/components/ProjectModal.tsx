@@ -82,20 +82,40 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </button>
               </div>
 
+              {/* Project Image */}
               <div className="mb-6">
-                <div className="relative h-64 bg-gradient-to-br from-accent/20 to-purple-500/20 rounded-lg overflow-hidden mb-6">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl font-bold text-white/20">
-                      {project.name.charAt(0)}
-                    </div>
-                  </div>
+                <div className="relative h-64 rounded-lg overflow-hidden mb-6">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://via.placeholder.com/800x600/4f46e5/ffffff?text=${encodeURIComponent(project.name)}`;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
               </div>
 
+              {/* Description */}
               <p className="text-white/80 text-lg leading-relaxed mb-6">
                 {project.description}
               </p>
 
+              {/* Credits */}
+              {project.credits && (
+                <div className="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
+                  <h3 className="text-sm font-semibold text-white/60 mb-1">
+                    Credits
+                  </h3>
+                  <p className="text-white/90 text-base">
+                    {project.credits}
+                  </p>
+                </div>
+              )}
+
+              {/* Technologies */}
               <div className="mb-6">
                 <h3 className="text-xl font-semibold mb-3 text-white">
                   Technologies Used
@@ -104,7 +124,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 bg-accent/20 text-accent rounded-lg text-sm font-medium"
+                      className="px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 rounded-lg text-sm font-medium border border-purple-500/30"
                     >
                       {tech}
                     </span>
@@ -112,16 +132,38 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </div>
               </div>
 
+              {/* Go Live Button */}
               <div className="flex gap-4">
                 <motion.a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-accent text-white rounded-lg font-semibold hover:bg-accent/90 transition-colors"
+                  className="relative px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-semibold overflow-hidden group"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Live Site →
+                  <span className="relative z-10 flex items-center gap-2">
+                    Go Live
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </motion.a>
               </div>
             </div>

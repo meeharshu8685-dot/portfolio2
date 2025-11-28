@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   EffectCoverflow,
@@ -6,6 +7,7 @@ import {
 } from 'swiper/modules';
 import { Project } from '../../data/projects';
 import { motion } from 'framer-motion';
+import { ProjectModal } from '../ProjectModal';
 
 interface ProjectCarouselFlowProps {
   projects: Project[];
@@ -14,6 +16,7 @@ interface ProjectCarouselFlowProps {
 export const ProjectCarouselFlow = ({
   projects,
 }: ProjectCarouselFlowProps) => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   return (
     <div className="w-full py-12">
       {/* Carousel Container */}
@@ -41,12 +44,11 @@ export const ProjectCarouselFlow = ({
               key={project.id}
               className="w-[300px] h-[380px]"
             >
-              <motion.a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block h-full"
+              <motion.button
+                onClick={() => setSelectedProject(project)}
+                className="block h-full w-full text-left"
                 whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="relative h-full bg-white/5 rounded-xl overflow-hidden group cursor-pointer">
@@ -64,6 +66,30 @@ export const ProjectCarouselFlow = ({
                     />
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Click Indicator */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                        <svg
+                          className="w-6 h-6 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Project Title */}
@@ -76,7 +102,7 @@ export const ProjectCarouselFlow = ({
                   {/* Shadow Effect */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10" />
                 </div>
-              </motion.a>
+              </motion.button>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -96,6 +122,12 @@ export const ProjectCarouselFlow = ({
           "Projects reflect skills more than certificates."
         </p>
       </motion.div>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
 
       {/* Custom Swiper Styles */}
       <style>{`
