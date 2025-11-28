@@ -1,12 +1,12 @@
 import { AnimatedPage } from '../components/AnimatedPage';
-import { Hero } from '../components/Hero';
+import { Hero3DDeveloper } from '../components/Hero3DDeveloper';
 import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
 
 export const Home = () => {
   return (
     <AnimatedPage>
-      <Hero />
+      <Hero3DDeveloper />
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <AboutCard />
       </section>

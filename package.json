@@ -15,11 +15,16 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0",
     "framer-motion": "^10.16.16",
-    "lottie-react": "^2.4.0"
+    "lottie-react": "^2.4.0",
+    "@react-three/fiber": "^8.15.11",
+    "@react-three/drei": "^9.88.13",
+    "three": "^0.158.0",
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/three": "^0.158.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.2.1",
