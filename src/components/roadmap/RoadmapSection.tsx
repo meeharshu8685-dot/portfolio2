@@ -186,7 +186,7 @@ export const RoadmapSection = () => {
           <div className="lg:hidden">
             <div className="relative">
               {/* Vertical Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-indigo-500 to-blue-500" />
+              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-indigo-500 to-blue-500" />
 
               {/* Nodes */}
               <div className="space-y-12">
@@ -194,11 +194,11 @@ export const RoadmapSection = () => {
                   const isOpen = openId === item.id;
 
                   return (
-                    <div key={item.id} className="relative pl-20">
+                    <div key={item.id} className="relative pl-16 sm:pl-20">
                       {/* Node Circle */}
                       <motion.button
                         onClick={() => toggleNode(item.id)}
-                        className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 border-[#0d0d0d] shadow-lg cursor-pointer z-10"
+                        className="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-2 sm:border-4 border-[#0d0d0d] shadow-lg cursor-pointer z-10"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{

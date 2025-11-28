@@ -50,16 +50,16 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-4 sm:inset-8 md:inset-16 lg:inset-32 z-50 overflow-y-auto"
+            className="fixed inset-2 sm:inset-4 md:inset-8 lg:inset-16 xl:inset-32 z-50 overflow-y-auto"
             role="dialog"
             aria-modal="true"
             aria-labelledby="project-title"
           >
-            <div className="glass rounded-2xl p-6 md:p-8 lg:p-10 max-w-4xl mx-auto">
-              <div className="flex justify-between items-start mb-6">
+            <div className="glass rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 max-w-4xl mx-auto">
+              <div className="flex justify-between items-start mb-4 sm:mb-6 gap-4">
                 <h2
                   id="project-title"
-                  className="text-3xl md:text-4xl font-bold text-gradient"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient flex-1"
                 >
                   {project.name}
                 </h2>
@@ -83,8 +83,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Project Image */}
-              <div className="mb-6">
-                <div className="relative h-64 rounded-lg overflow-hidden mb-6">
+              <div className="mb-4 sm:mb-6">
+                <div className="relative h-48 sm:h-64 rounded-lg overflow-hidden mb-4 sm:mb-6">
                   <img
                     src={project.image}
                     alt={project.name}
@@ -99,32 +99,32 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Description */}
-              <p className="text-white/80 text-lg leading-relaxed mb-6">
+              <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                 {project.description}
               </p>
 
               {/* Credits */}
               {project.credits && (
-                <div className="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h3 className="text-sm font-semibold text-white/60 mb-1">
+                <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white/5 rounded-lg border border-white/10">
+                  <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-1">
                     Credits
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-sm sm:text-base">
                     {project.credits}
                   </p>
                 </div>
               )}
 
               {/* Technologies */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-3 text-white">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">
                   Technologies Used
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 rounded-lg text-sm font-medium border border-purple-500/30"
+                      className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 rounded-lg text-xs sm:text-sm font-medium border border-purple-500/30"
                     >
                       {tech}
                     </span>
@@ -133,12 +133,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Go Live Button */}
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 <motion.a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-semibold overflow-hidden group"
+                  className="relative px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-semibold overflow-hidden group w-full sm:w-auto text-center"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

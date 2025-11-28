@@ -113,15 +113,15 @@ export const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="flex flex-col space-y-4 py-4">
+              <div className="flex flex-col space-y-3 py-4">
                 {navLinks.map((link) => {
                   const isActive = location.pathname === link.path;
                   return (
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`text-white/80 hover:text-white transition-colors ${
-                        isActive ? 'text-white font-semibold' : ''
+                      className={`text-white/80 hover:text-white transition-colors text-base py-2 ${
+                        isActive ? 'text-white font-semibold border-l-2 border-purple-500 pl-3' : 'pl-3'
                       }`}
                     >
                       {link.label}
