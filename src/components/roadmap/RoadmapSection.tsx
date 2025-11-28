@@ -22,7 +22,7 @@ export const RoadmapSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Roadmap & Goals
           </h2>
-          <p className="text-white/60 text-lg md:text-xl">
+          <p className="text-lg md:text-xl transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
             My long-term growth plan (2025 → 2028)
           </p>
         </motion.div>
@@ -76,7 +76,8 @@ export const RoadmapSection = () => {
                       {/* Node Circle */}
                       <motion.button
                         onClick={() => toggleNode(item.id)}
-                        className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 border-[#0d0d0d] shadow-lg cursor-pointer group"
+                        className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 shadow-lg cursor-pointer group transition-colors duration-300"
+                        style={{ borderColor: 'var(--bg-primary)' }}
                         whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{
@@ -142,13 +143,13 @@ export const RoadmapSection = () => {
                             }}
                           >
                             <motion.div
-                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl max-w-md"
+                              className="glass rounded-2xl p-6 md:p-8 shadow-xl max-w-md"
                               whileHover={{
                                 scale: 1.02,
                                 boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)',
                               }}
                             >
-                              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                              <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                                 {item.title}
                               </h3>
                               <p className="text-purple-400 font-semibold mb-5 text-base md:text-lg">
@@ -158,16 +159,17 @@ export const RoadmapSection = () => {
                                 {item.bullets.map((bullet, idx) => (
                                   <li
                                     key={idx}
-                                    className="text-white/70 text-sm md:text-base flex items-start gap-3 leading-relaxed"
+                                    className="text-sm md:text-base flex items-start gap-3 leading-relaxed transition-colors duration-300"
+                                    style={{ color: 'var(--text-secondary)' }}
                                   >
                                     <span className="text-purple-400 mt-1.5 flex-shrink-0">•</span>
                                     <span>{bullet}</span>
                                   </li>
                                 ))}
                               </ul>
-                              <div className="pt-4 border-t border-white/10">
+                              <div className="pt-4 border-t transition-colors duration-300 glass-border">
                                 <p className="text-blue-400 text-sm md:text-base font-medium leading-relaxed">
-                                  <span className="text-white/60 font-semibold">Goal: </span>
+                                  <span className="font-semibold transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>Goal: </span>
                                   {item.outcomeGoal}
                                 </p>
                               </div>
@@ -198,7 +200,8 @@ export const RoadmapSection = () => {
                       {/* Node Circle */}
                       <motion.button
                         onClick={() => toggleNode(item.id)}
-                        className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 border-[#0d0d0d] shadow-lg cursor-pointer z-10"
+                        className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center border-4 shadow-lg cursor-pointer z-10 transition-colors duration-300"
+                        style={{ borderColor: 'var(--bg-primary)' }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         animate={{
@@ -249,13 +252,13 @@ export const RoadmapSection = () => {
                             className="overflow-hidden"
                           >
                             <motion.div
-                              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl mt-4"
+                              className="glass rounded-2xl p-6 md:p-8 shadow-xl mt-4"
                               whileHover={{
                                 scale: 1.01,
                                 boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)',
                               }}
                             >
-                              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                              <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                                 {item.title}
                               </h3>
                               <p className="text-purple-400 font-semibold mb-5 text-base md:text-lg">
@@ -265,16 +268,17 @@ export const RoadmapSection = () => {
                                 {item.bullets.map((bullet, idx) => (
                                   <li
                                     key={idx}
-                                    className="text-white/70 text-sm md:text-base flex items-start gap-3 leading-relaxed"
+                                    className="text-sm md:text-base flex items-start gap-3 leading-relaxed transition-colors duration-300"
+                                    style={{ color: 'var(--text-secondary)' }}
                                   >
                                     <span className="text-purple-400 mt-1.5 flex-shrink-0">•</span>
                                     <span>{bullet}</span>
                                   </li>
                                 ))}
                               </ul>
-                              <div className="pt-4 border-t border-white/10">
+                              <div className="pt-4 border-t transition-colors duration-300 glass-border">
                                 <p className="text-blue-400 text-sm md:text-base font-medium leading-relaxed">
-                                  <span className="text-white/60 font-semibold">Goal: </span>
+                                  <span className="font-semibold transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>Goal: </span>
                                   {item.outcomeGoal}
                                 </p>
                               </div>

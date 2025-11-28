@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { siteData } from '../data/siteData';
+import { ThemeToggleCompact } from './ThemeToggleCompact';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -48,7 +49,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -71,15 +72,20 @@ export const Navbar = () => {
                 </Link>
               );
             })}
+            {/* Theme Toggle */}
+            <ThemeToggleCompact />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
+          {/* Mobile: Theme Toggle + Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggleCompact />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 transition-colors"
+              style={{ color: 'var(--text-primary)' }}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
@@ -100,7 +106,8 @@ export const Navbar = () => {
                 )}
               </svg>
             </motion.div>
-          </button>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

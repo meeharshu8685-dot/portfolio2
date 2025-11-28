@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { ThemeToggle } from './components/ThemeToggle';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
@@ -31,7 +30,6 @@ function App() {
           </Routes>
         </AnimatePresence>
         <Footer />
-        <ThemeToggle />
       </div>
     </ThemeProvider>
   );
