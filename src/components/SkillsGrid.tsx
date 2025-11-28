@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { siteData } from '../data/siteData';
-import ScaleTiltReveal from './scroll/ScaleTiltReveal';
+import { skillsWithIcons } from '../data/skillsWithIcons';
+import SkillCard3D from './skills/SkillCard3D';
 
 export const SkillsGrid = () => {
   const containerVariants = {
@@ -8,18 +8,7 @@ export const SkillsGrid = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
+        staggerChildren: 0.08,
       },
     },
   };
@@ -28,23 +17,19 @@ export const SkillsGrid = () => {
     <motion.div
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
     >
-      {siteData.skills.map((skill) => (
-        <ScaleTiltReveal key={skill} maxTilt={10}>
-          <motion.div
-            variants={itemVariants}
-            className="glass rounded-lg p-4 text-center transition-all duration-300 cursor-default hover:opacity-90"
-            style={{ color: 'var(--text-primary)' }}
-            whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-            }}
-          >
-            <span className="font-medium">{skill}</span>
-          </motion.div>
-        </ScaleTiltReveal>
+      {skillsWithIcons.map((skill, index) => (
+        <SkillCard3D
+          key={skill.id}
+          icon={skill.icon}
+          name={skill.name}
+          description={skill.description}
+          index={index}
+          glowColor={skill.glowColor}
+        />
       ))}
     </motion.div>
   );
