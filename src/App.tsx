@@ -7,6 +7,7 @@ import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Contact } from './pages/Contact';
 import { AnimationsPage } from './pages/AnimationsPage';
+import { Roadmap } from './pages/Roadmap';
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/animations" element={<AnimationsPage />} />
+          <Route path="/roadmap" element={<Roadmap />} />
         </Routes>
       </AnimatePresence>
       <Footer />
