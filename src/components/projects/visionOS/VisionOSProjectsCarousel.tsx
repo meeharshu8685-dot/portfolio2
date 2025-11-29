@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Project } from "../../../data/projects";
 import { siteData } from "../../../data/siteData";
@@ -137,6 +137,10 @@ export const VisionOSProjectsCarousel: React.FC<VisionOSProjectsCarouselProps> =
                 key={project.id}
                 className="absolute w-[380px] h-[520px] rounded-3xl overflow-hidden flex flex-col"
                 style={{
+                  left: "50%",
+                  top: "50%",
+                  marginLeft: "-190px", // Half of card width
+                  marginTop: "-260px", // Half of card height
                   scale: transform.scale,
                   rotateY: transform.rotateY,
                   x: transform.x,

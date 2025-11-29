@@ -1,10 +1,11 @@
+import React from "react";
 import { motion } from "framer-motion";
 import VisionOSProjectsCarousel from "../components/projects/visionOS/VisionOSProjectsCarousel";
 import { projects } from "../data/projects";
 
 export const ProjectsSection: React.FC = () => {
   return (
-    <section className="py-32 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section id="projects" className="min-h-screen py-32 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="text-4xl font-bold text-center mb-16 text-gradient"
