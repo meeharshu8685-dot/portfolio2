@@ -5,6 +5,7 @@ import Typed from 'typed.js';
 import { siteData } from '../data/siteData';
 import SpiderBlinkClimbLook from './SpiderBlinkClimbLook';
 import ScaleTiltReveal from './scroll/ScaleTiltReveal';
+import UnicornStudioEmbed from './UnicornStudioEmbed';
 
 export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
@@ -53,10 +54,20 @@ export const Hero = () => {
         {/* LEFT SIDE - Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-            Hi, I'm{' '}
-            <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
-              {siteData.name}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 flex items-center flex-wrap gap-2">
+            <span>Hi, I'm</span>
+            <span className="relative inline-block" style={{ 
+              width: 'clamp(300px, 40vw, 600px)', 
+              height: 'clamp(60px, 8vw, 120px)',
+              lineHeight: 0
+            }}>
+              <UnicornStudioEmbed 
+                projectId="XzhzTPcYBnCqQFQn4Wa7"
+                width="100%"
+                height="100%"
+                className=""
+              />
+              <span className="sr-only">{siteData.name}</span>
             </span>
           </h1>
 
