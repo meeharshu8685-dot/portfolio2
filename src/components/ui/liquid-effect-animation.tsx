@@ -3,11 +3,7 @@
 
 import { useEffect, useRef } from "react";
 
-type LiquidEffectAnimationProps = {
-  imageUrl?: string;
-};
-
-export function LiquidEffectAnimation({ imageUrl }: LiquidEffectAnimationProps) {
+export function LiquidEffectAnimation() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -28,9 +24,9 @@ export function LiquidEffectAnimation({ imageUrl }: LiquidEffectAnimationProps) 
 
         app = LiquidBackground(canvas);
 
-        // Use provided character image or fall back to the profile image in /public/assets
-        const textureUrl = imageUrl ?? "/assets/profile.jpg";
-        app.loadImage(textureUrl);
+        app.loadImage(
+          "https://i.pinimg.com/1200x/38/71/c9/3871c9c7a6066df6763c97dc3285c907.jpg"
+        );
 
         app.liquidPlane.material.metalness = 0.75;
         app.liquidPlane.material.roughness = 0.25;
