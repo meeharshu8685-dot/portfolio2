@@ -15,7 +15,7 @@ export function LiquidEffectAnimation() {
       try {
         // Dynamically import the liquid background module at runtime
         const mod: any = await import(
-          "https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js"
+          /* @vite-ignore */ "https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js"
         );
 
         const LiquidBackground = mod.default ?? mod.LiquidBackground ?? mod;
