@@ -7,19 +7,26 @@ export function LiquidEffectAnimation() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    let app: any | undefined;
 
-    const script = document.createElement("script");
-    script.type = "module";
-    script.textContent = `
-      import LiquidBackground from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js';
+    const init = async () => {
+      if (!canvasRef.current) return;
 
-      const canvas = document.getElementById('liquid-canvas');
+      try {
+        // Dynamically import the liquid background module at runtime
+        const mod: any = await import(
+          "https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js"
+        );
 
-      if (canvas) {
-        const app = LiquidBackground(canvas);
+        const LiquidBackground = mod.default ?? mod.LiquidBackground ?? mod;
+        const canvas = document.getElementById("liquid-canvas") as HTMLCanvasElement | null;
+        if (!canvas || !LiquidBackground) return;
 
-        app.loadImage('https://i.pinimg.com/1200x/38/71/c9/3871c9c7a6066df6763c97dc3285c907.jpg');
+        app = LiquidBackground(canvas);
+
+        app.loadImage(
+          "https://i.pinimg.com/1200x/38/71/c9/3871c9c7a6066df6763c97dc3285c907.jpg"
+        );
 
         app.liquidPlane.material.metalness = 0.75;
         app.liquidPlane.material.roughness = 0.25;
@@ -27,19 +34,21 @@ export function LiquidEffectAnimation() {
 
         app.setRain(false);
 
-        // Expose app globally so we can clean it up on unmount
         window.__liquidApp = app;
+      } catch (error) {
+        console.error("Failed to initialize LiquidEffectAnimation:", error);
       }
-    `;
+    };
 
-    document.body.appendChild(script);
+    void init();
 
     return () => {
+      if (app && typeof app.dispose === "function") {
+        app.dispose();
+      }
       if (window.__liquidApp && typeof window.__liquidApp.dispose === "function") {
         window.__liquidApp.dispose();
       }
-
-      document.body.removeChild(script);
       window.__liquidApp = undefined;
     };
   }, []);
