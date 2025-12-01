@@ -5,6 +5,7 @@ import Typed from 'typed.js';
 import { siteData } from '../data/siteData';
 import SpiderBlinkClimbLook from './SpiderBlinkClimbLook';
 import ScaleTiltReveal from './scroll/ScaleTiltReveal';
+import { SplashCursor } from './ui/splash-cursor';
 
 export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
@@ -48,8 +49,11 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen w-full px-6 pt-24 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Header background splash effect */}
+      <SplashCursor />
+
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* LEFT SIDE - Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>
