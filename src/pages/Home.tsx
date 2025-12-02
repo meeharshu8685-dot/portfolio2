@@ -1,5 +1,5 @@
 import { AnimatedPage } from '../components/AnimatedPage';
-import { Hero } from '../components/Hero';
+import { HeaderWithSplash } from '../components/HeaderWithSplash';
 import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
 import ScaleTiltReveal from '../components/scroll/ScaleTiltReveal';
@@ -8,7 +8,7 @@ export const Home = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <AnimatedPage>
-        <Hero />
+        <HeaderWithSplash />
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
             <div className="p-6 sm:p-10">
