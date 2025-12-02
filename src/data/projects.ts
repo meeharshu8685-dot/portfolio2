@@ -16,7 +16,7 @@ export const projects: Project[] = [
     description: "A visually modern and interactive personal portfolio website showcasing my work, skills, and journey in tech. Features smooth animations, responsive design, and a clean aesthetic.",
     tech: ["React.js","Tailwind CSS","TypeScript","Framer Motion","Vercel"],
     live: "https://iykhrshuu.vercel.app/",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&q=80",
+    image: "https://image2url.com/images/1764685149929-170aa2bd-ffe4-4a7f-a70e-49ad2fea4efe.png",
     credits: "Solo Project",
     order: 1
   },
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     description: "Organize and showcase college study materials with Google Drive integration for centralized content access.",
     tech: ["React.js","Tailwind CSS","Firebase","Google Drive API","Vercel"],
     live: "https://notes-nest-weld.vercel.app/",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80",
+    image: "https://image2url.com/images/1764684752802-3d042f62-84c1-4c21-881e-cd040f22d7b2.png",
     credits: "Solo Project",
     order: 2
   },
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     description: "A minimal, choice-based decision support system built to map user challenges and instantly deliver actionable solutions.",
     tech: ["React.js","Tailwind CSS","Zustand","Vercel"],
     live: "https://innerdecode.vercel.app/",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80",
+    image: "https://image2url.com/images/1764684385535-69a3487a-f134-4d1a-a6d5-f9e6ecd05fe8.png",
     credits: "Solo Project",
     order: 3
   },
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     description: "A complete business support platform featuring ticketing systems, knowledge base management, and customer support operations. Designed to boost productivity and enhance workflow efficiency for teams.",
     tech: ["Next.js","Tailwind CSS","TypeScript","Zustand","Node.js","Vercel"],
     live: "https://blusdesk.vercel.app/",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80",
+    image: "https://image2url.com/images/1764685453042-f20000d4-ea19-4505-8875-b347712f57f2.png",
     credits: "Solo Project",
     order: 4
   },
