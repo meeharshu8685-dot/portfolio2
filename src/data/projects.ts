@@ -56,7 +56,7 @@ export const projects: Project[] = [
     description: "A full-stack application designed to be a personal health companion, offering immediate medical insights and critical emergency support. Key features include an AI Symptom Checker powered by the Gemini API for real-time analysis and recommendations, a real-time Hospital Locator with directions, a one-tap SOS Emergency Module for immediate location sharing, and comprehensive Medical Profile and Medication Management. The app is built with a hybrid backend architecture, utilizing Supabase for robust authentication.",
     tech: ["Next.js","Tailwind CSS","Gemini AI API","Node.js","Zustand","Vercel"],
     live: "https://mediguardia.vercel.app",
-    image: "/assets/mediguardia-hero.png",
+    image: "https://image2url.com/images/1764681634283-3d252a7b-4783-4a3d-9e25-0ed973f1df85.png",
     credits: "Partner • Co-created with Abhishek Gaud • Ongoing",
     order: 5
   }
