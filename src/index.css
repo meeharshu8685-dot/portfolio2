@@ -111,6 +111,17 @@
     @apply bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent;
   }
 
+  /* Homepage hero gradient background (deep blue glow on black) */
+  .home-hero-gradient {
+    background:
+      radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.9) 0, transparent 55%),
+      radial-gradient(circle at 0% 80%, rgba(37, 99, 235, 0.8) 0, transparent 55%),
+      radial-gradient(circle at 70% 30%, rgba(15, 23, 42, 0.9) 0, transparent 60%),
+      #020617;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   /* Smooth color transitions for theme switching */
   .transition-colors {
     transition-property: color, background-color, border-color;
