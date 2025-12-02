@@ -1,5 +1,5 @@
 /**
- * SplitProjectHighlight.jsx
+ * SplitProjectHighlight.tsx
  *
  * Minimalistic Split-Screen Project Highlight component.
  *
@@ -21,27 +21,44 @@
  * - onOpenCase?: (project) => void
  * - className?: string
  *
- * Features:
- * - Split screen layout: left = text & controls, right = hero image & thumbnails
- * - Smooth fade/slide transitions between projects
- * - Keyboard navigation: Left/Right arrows switch projects
- * - Thumbnails & prev/next buttons change project
- * - Accessible: region landmark, aria-live announcements, focus-visible styles
- *
  * Integration:
- * - Import the CSS in your app entry or alongside this component:
- *   import './SplitProjectHighlight.css';
- *
- * - Use:
- *   import SplitProjectHighlight from './SplitProjectHighlight';
+ *   import SplitProjectHighlight from '../components/SplitProjectHighlight';
+ *   import '../components/SplitProjectHighlight.css';
  *   <SplitProjectHighlight projects={projects} initialIndex={0} />
  */
 
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  KeyboardEvent,
+} from 'react';
 import './SplitProjectHighlight.css';
 
-function getChips(project) {
-  const chips = [];
+export type HighlightProject = {
+  id: string;
+  title: string;
+  role: string;
+  desc: string;
+  year: string;
+  type: string;
+  stack: string;
+  img: string;
+  thumbs?: string[];
+  liveUrl?: string;
+  caseUrl?: string;
+};
+
+export interface SplitProjectHighlightProps {
+  projects: HighlightProject[];
+  initialIndex?: number;
+  onOpenCase?: (project: HighlightProject) => void;
+  className?: string;
+}
+
+function getChips(project: HighlightProject): string[] {
+  const chips: string[] = [];
   if (project.year) chips.push(project.year);
   if (project.type) chips.push(project.type);
   if (project.role) chips.push(project.role);
@@ -50,26 +67,28 @@ function getChips(project) {
 
 const ANIM_DURATION_MS = 480;
 
-export default function SplitProjectHighlight({
+const SplitProjectHighlight: React.FC<SplitProjectHighlightProps> = ({
   projects,
   initialIndex = 0,
   onOpenCase,
   className = '',
-}) {
+}) => {
   const safeInitial = useMemo(
-    () => Math.min(Math.max(initialIndex, 0), Math.max((projects?.length || 1) - 1, 0)),
+    () =>
+      Math.min(
+        Math.max(initialIndex, 0),
+        Math.max((projects?.length || 1) - 1, 0)
+      ),
     [initialIndex, projects]
   );
 
-  const [index, setIndex] = useState(safeInitial);
+  const [index, setIndex] = useState<number>(safeInitial);
   const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [direction, setDirection] = useState<1 | -1>(1);
 
   const projectCount = projects?.length || 0;
   const current = projectCount > 0 ? projects[index] : null;
   const currentChips = current ? getChips(current) : [];
-  const currentThumbs =
-    current && current.thumbs && current.thumbs.length > 0 ? current.thumbs : current ? [current.img] : [];
 
   // Ensure index stays in range if projects prop changes
   useEffect(() => {
@@ -78,14 +97,14 @@ export default function SplitProjectHighlight({
   }, [projects]);
 
   const goTo = useCallback(
-    (nextIndex) => {
+    (nextIndex: number) => {
       if (!projects || projects.length === 0) return;
-      const normalized = ((nextIndex % projects.length) + projects.length) % projects.length;
+      const normalized =
+        ((nextIndex % projects.length) + projects.length) % projects.length;
       if (normalized === index) return;
       setDirection(normalized > index ? 1 : -1);
       setAnimating(true);
       setIndex(normalized);
-      // stop animating after duration
       window.setTimeout(() => setAnimating(false), ANIM_DURATION_MS);
     },
     [index, projects]
@@ -99,9 +118,8 @@ export default function SplitProjectHighlight({
     goTo(index + 1);
   }, [goTo, index]);
 
-  // Keyboard navigation (Left/Right arrows)
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent<HTMLElement>) => {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
         handlePrev();
@@ -144,7 +162,6 @@ export default function SplitProjectHighlight({
     );
   }
 
-  // Animation helper classes
   const animClass = animating
     ? direction === 1
       ? 'sph-slide-fade-enter-active'
@@ -201,14 +218,22 @@ export default function SplitProjectHighlight({
             <div>
               <div className="sph-cta-row" aria-label="Project actions">
                 {current.caseUrl || onOpenCase ? (
-                  <button type="button" className="sph-btn-primary" onClick={handleCaseClick}>
+                  <button
+                    type="button"
+                    className="sph-btn-primary"
+                    onClick={handleCaseClick}
+                  >
                     View Case Study
                     <span aria-hidden="true">↗</span>
                   </button>
                 ) : null}
 
                 {current.liveUrl && (
-                  <button type="button" className="sph-btn-ghost" onClick={handleLiveClick}>
+                  <button
+                    type="button"
+                    className="sph-btn-ghost"
+                    onClick={handleLiveClick}
+                  >
                     Open Live
                     <span aria-hidden="true">↗</span>
                   </button>
@@ -250,9 +275,7 @@ export default function SplitProjectHighlight({
                 <img
                   key={current.id}
                   src={current.img}
-                  alt=""
-                  role="img"
-                  aria-label={`${current.title} hero visual`}
+                  alt={`${current.title} hero visual`}
                   className="sph-hero-img"
                 />
                 <div className="sph-hero-overlay" aria-hidden="true" />
@@ -273,13 +296,18 @@ export default function SplitProjectHighlight({
                     <button
                       key={p.id}
                       type="button"
-                      className={`sph-thumb-btn ${isActive ? 'sph-thumb-btn--active' : ''}`}
+                      className={`sph-thumb-btn ${
+                        isActive ? 'sph-thumb-btn--active' : ''
+                      }`}
                       aria-label={`View project: ${p.title}`}
                       aria-pressed={isActive}
                       onClick={() => goTo(i)}
                     >
-                      <img src={thumbSrc} alt="" />
-                      <span className="sph-thumb-indicator" aria-hidden="true" />
+                      <img src={thumbSrc} alt={p.title} />
+                      <span
+                        className="sph-thumb-indicator"
+                        aria-hidden="true"
+                      />
                       <span className="sph-sr-only">{p.title}</span>
                     </button>
                   );
@@ -294,6 +322,8 @@ export default function SplitProjectHighlight({
       </div>
     </section>
   );
-}
+};
+
+export default SplitProjectHighlight;
 
 
