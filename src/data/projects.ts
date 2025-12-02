@@ -52,12 +52,12 @@ export const projects: Project[] = [
   },
   {
     id: "mediguardia",
-    name: "MediGuardia – AI Medical Assistant",
-    description: "An AI-driven medical assistant offering intelligent symptom analysis and profile-based health insights. Powered by Gemini AI, MediGuardia aims to make basic medical guidance more accessible.",
+    name: "MediGuardia – AI Medical Assistant (Ongoing)",
+    description: "A full-stack application designed to be a personal health companion, offering immediate medical insights and critical emergency support. Key features include an AI Symptom Checker powered by the Gemini API for real-time analysis and recommendations, a real-time Hospital Locator with directions, a one-tap SOS Emergency Module for immediate location sharing, and comprehensive Medical Profile and Medication Management. The app is built with a hybrid backend architecture, utilizing Supabase for robust authentication.",
     tech: ["Next.js","Tailwind CSS","Gemini AI API","Node.js","Zustand","Vercel"],
     live: "https://mediguardia.vercel.app",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&q=80",
-    credits: "Co-created with Abhishek Gaud",
+    image: "/assets/mediguardia-hero.png",
+    credits: "Partner • Co-created with Abhishek Gaud • Ongoing",
     order: 5
   }
 ].sort((a, b) => a.order - b.order); // Sort by order
