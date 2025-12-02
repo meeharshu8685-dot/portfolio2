@@ -6,7 +6,7 @@ import ScaleTiltReveal from '../components/scroll/ScaleTiltReveal';
 
 export const Home = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden home-hero-gradient">
       <AnimatedPage>
         <Hero />
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
