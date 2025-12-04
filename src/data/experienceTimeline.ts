@@ -7,19 +7,19 @@ export interface TimelineItem {
 
 export const experienceTimeline: TimelineItem[] = [
   {
-    year: "2024",
+    year: "2025",
     title: "Started BITS Pilani CS",
     description: "Began my Computer Science journey and started learning fundamentals.",
     tech: ["C", "Mathematics", "Problem Solving"]
   },
   {
-    year: "2024",
+    year: "2025",
     title: "Frontend Development",
     description: "Learned HTML, CSS, JS, React, Tailwind and built small UI projects.",
     tech: ["HTML", "CSS", "React", "Tailwind"]
   },
   {
-    year: "2024",
+    year: "2025",
     title: "AI/ML Foundations",
     description: "Exploring machine learning fundamentals and AI workflows.",
     tech: ["Python", "AI Prompting", "Tensorflow Basics"]
