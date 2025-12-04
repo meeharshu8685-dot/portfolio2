@@ -1,28 +1,19 @@
 import { AnimatedPage } from '../components/AnimatedPage';
-import SplitProjectHighlight from '../components/SplitProjectHighlight';
+import SpotlightBentoGrid from '../components/projects/SpotlightBentoGrid';
 import { projects } from '../data/projects';
 
 export const Projects = () => {
-  // Adapt existing projects data to SplitProjectHighlight shape
-  const highlightProjects = projects.map((p) => ({
-    id: p.id,
-    title: p.name,
-    role: p.credits || 'Project',
-    desc: p.description,
-    year: '',
-    type: p.tech[0] || 'Project',
-    stack: p.tech.join(' • '),
-    img: p.image,
-    thumbs: [],
-    liveUrl: p.live,
-    caseUrl: undefined,
-  }));
-
   return (
     <AnimatedPage>
       <section id="projects" className="min-h-screen pt-24 pb-20 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SplitProjectHighlight projects={highlightProjects} initialIndex={0} />
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
+            <p className="text-zinc-400 max-w-2xl">
+              A collection of projects I've worked on, ranging from web applications to AI integrations.
+            </p>
+          </div>
+          <SpotlightBentoGrid projects={projects} />
         </div>
       </section>
     </AnimatedPage>
