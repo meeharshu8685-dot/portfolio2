@@ -10,6 +10,7 @@ import { Contact } from './pages/Contact';
 import { AnimationsPage } from './pages/AnimationsPage';
 import { Roadmap } from './pages/Roadmap';
 import { FadeUpExample } from './pages/FadeUpExample';
+import { Arsenal } from './pages/Arsenal';
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/arsenal" element={<Arsenal />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/animations" element={<AnimationsPage />} />
             <Route path="/roadmap" element={<Roadmap />} />

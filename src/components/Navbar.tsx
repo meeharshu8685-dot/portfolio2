@@ -8,6 +8,7 @@ const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
   { path: '/projects', label: 'Projects' },
+  { path: '/arsenal', label: 'Arsenal' },
   { path: '/roadmap', label: 'Roadmap' },
   { path: '/contact', label: 'Contact' },
 ];
@@ -34,9 +35,8 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3' : 'py-4'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-3' : 'py-4'
+        }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -86,26 +86,26 @@ export const Navbar = () => {
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
-            <motion.div
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                {isOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </motion.div>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </motion.div>
             </button>
           </div>
         </div>
@@ -127,10 +127,9 @@ export const Navbar = () => {
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`transition-colors text-base py-2 ${
-                        isActive ? 'font-semibold border-l-2 border-purple-500 pl-3' : 'pl-3'
-                      }`}
-                      style={{ 
+                      className={`transition-colors text-base py-2 ${isActive ? 'font-semibold border-l-2 border-purple-500 pl-3' : 'pl-3'
+                        }`}
+                      style={{
                         color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                       }}
                     >
