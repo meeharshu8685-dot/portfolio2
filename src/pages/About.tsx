@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { AnimatedPage } from '../components/AnimatedPage';
 import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
