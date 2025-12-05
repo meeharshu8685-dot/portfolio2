@@ -3,14 +3,13 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
-import { FiHome, FiUser, FiBriefcase, FiMap, FiMail, FiSun, FiMoon, FiLayers } from 'react-icons/fi';
+import { FiHome, FiUser, FiBriefcase, FiMail, FiSun, FiMoon, FiLayers } from 'react-icons/fi';
 
 const DOCK_ITEMS = [
     { label: 'Home', icon: FiHome, path: '/' },
     { label: 'About', icon: FiUser, path: '/about' },
     { label: 'Projects', icon: FiBriefcase, path: '/projects' },
     { label: 'Arsenal', icon: FiLayers, path: '/arsenal' },
-    { label: 'Roadmap', icon: FiMap, path: '/roadmap' },
     { label: 'Contact', icon: FiMail, path: '/contact' },
 ];
 
