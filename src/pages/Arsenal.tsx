@@ -8,7 +8,7 @@ export const Arsenal = () => {
         <AnimatedPage>
             <section
                 id="arsenal"
-                className="min-h-screen pt-24 pb-20 transition-colors duration-300"
+                className="min-h-screen pb-32 transition-colors duration-300"
                 style={{ backgroundColor: 'var(--bg-primary)' }}
             >
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">

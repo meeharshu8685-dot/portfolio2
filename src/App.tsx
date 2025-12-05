@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { Navbar } from './components/Navbar';
+import Dock from './components/Dock';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -18,7 +18,6 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-        <Navbar />
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
@@ -32,6 +31,7 @@ function App() {
           </Routes>
         </AnimatePresence>
         <Footer />
+        <Dock />
       </div>
     </ThemeProvider>
   );
