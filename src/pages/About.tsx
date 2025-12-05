@@ -4,6 +4,7 @@ import { AboutCard } from '../components/AboutCard';
 import { SkillsGrid } from '../components/SkillsGrid';
 import { ExperienceTimeline } from '../components/about/ExperienceTimeline';
 import { SkillsProgressBars } from '../components/skills/SkillsProgressBars';
+import { ThemeSelector } from '../components/ThemeSelector';
 
 export const About = () => {
   return (
@@ -46,6 +47,16 @@ export const About = () => {
               <p className="transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>BITS Pilani (Ongoing)</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Theme Selector */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32">
+        <div className="glass rounded-2xl p-6 md:p-8 lg:p-10 max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient text-center">
+            Choose Your Theme
+          </h2>
+          <ThemeSelector />
         </div>
       </section>
     </AnimatedPage>

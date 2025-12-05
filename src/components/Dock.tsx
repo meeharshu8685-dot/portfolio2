@@ -2,8 +2,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
-import { FiHome, FiUser, FiBriefcase, FiMail, FiSun, FiMoon, FiLayers } from 'react-icons/fi';
+import { FiHome, FiUser, FiBriefcase, FiMail, FiLayers } from 'react-icons/fi';
 
 const DOCK_ITEMS = [
     { label: 'Home', icon: FiHome, path: '/' },
@@ -70,8 +69,6 @@ function DockIcon({ mouseX, icon: Icon, label, path, onClick, isActive }: DockIc
 export default function Dock() {
     const mouseX = useMotionValue(Infinity);
     const location = useLocation();
-    const { theme, setTheme } = useTheme();
-    const isDark = theme === 'dark';
 
     return (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
@@ -90,17 +87,6 @@ export default function Dock() {
                         isActive={location.pathname === item.path}
                     />
                 ))}
-
-                {/* Divider */}
-                <div className="h-8 w-[1px] bg-white/10 self-center mx-1" />
-
-                {/* Theme Toggle */}
-                <DockIcon
-                    mouseX={mouseX}
-                    icon={isDark ? FiMoon : FiSun}
-                    label={isDark ? 'Dark Mode' : 'Light Mode'}
-                    onClick={() => setTheme(isDark ? 'light' : 'dark')}
-                />
             </motion.div>
         </div>
     );
