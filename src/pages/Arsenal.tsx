@@ -1,6 +1,6 @@
 import { AnimatedPage } from '../components/AnimatedPage';
 import { FlipCard } from '../components/arsenal/FlipCard';
-import { stackItems, categories, getItemsByCategory } from '../data/stackItems';
+import { categories, getItemsByCategory } from '../data/stackItems';
 import { motion } from 'framer-motion';
 
 export const Arsenal = () => {
