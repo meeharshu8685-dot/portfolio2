@@ -16,10 +16,12 @@ const DOCK_ITEMS = [
     { label: 'Contact', icon: FiMail, path: '/contact' },
 ];
 
-function DockIcon({ mouseX, icon: Icon, label, path, onClick, isActive }: any) {
-    const ref = useRef<HTMLDivElement>(null);
+function DockIcon({ mouseX, icon: Icon, path, onClick, isActive }: any) {
+    const linkRef = useRef<HTMLAnchorElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const distance = useTransform(mouseX, (val: number) => {
+        const ref = path ? linkRef : buttonRef;
         const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
         return val - bounds.x - bounds.width / 2;
     });
@@ -33,8 +35,8 @@ function DockIcon({ mouseX, icon: Icon, label, path, onClick, isActive }: any) {
         return (
             <MotionLink
                 to={path}
-                ref={ref}
-                style={{ width, height: width }}
+                ref={linkRef}
+                style={{ width: width as any, height: width as any }}
                 className={`aspect-square flex flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-colors hover:bg-white/20 relative ${isActive ? 'bg-white/10 border-white/40' : ''
                     }`}
             >
@@ -55,8 +57,8 @@ function DockIcon({ mouseX, icon: Icon, label, path, onClick, isActive }: any) {
     return (
         <motion.button
             onClick={onClick}
-            ref={ref}
-            style={{ width, height: width }}
+            ref={buttonRef}
+            style={{ width: width as any, height: width as any }}
             className="aspect-square flex flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-colors hover:bg-white/20 relative"
         >
             <motion.div className="w-1/2 h-1/2 flex items-center justify-center">
