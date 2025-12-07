@@ -9,9 +9,44 @@ export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
   const navigate = useNavigate();
   const typedRef = useRef<HTMLSpanElement>(null);
+  const titleTypedRef = useRef<HTMLSpanElement>(null);
   const typedInstanceRef = useRef<Typed | null>(null);
+  const titleTypedInstanceRef = useRef<Typed | null>(null);
 
-  // Initialize Typed.js typing animation
+  // Initialize Typed.js for rotating titles
+  useEffect(() => {
+    if (titleTypedRef.current && !titleTypedInstanceRef.current) {
+      titleTypedInstanceRef.current = new Typed(titleTypedRef.current, {
+        strings: [
+          'Building. Learning. Improving — One Project at a Time.',
+          'A Student Developer Crafting Smooth, Modern UI',
+          'Focused on Clean Design and Real-World Web Projects',
+          'Learning Web Development Through Real Creating',
+          'Growing as a Developer by Building Real Products',
+          'Bringing Ideas to Life Through Code — Still Learning, Always Improving',
+          'Developing Web Projects That Feel Clean and Professional',
+          'Student Developer Exploring the Art of UI',
+          'Learning Web Dev by Building Real Experiences',
+        ],
+        typeSpeed: 40,
+        backSpeed: 20,
+        backDelay: 2000,
+        startDelay: 300,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+      });
+    }
+
+    return () => {
+      if (titleTypedInstanceRef.current) {
+        titleTypedInstanceRef.current.destroy();
+        titleTypedInstanceRef.current = null;
+      }
+    };
+  }, []);
+
+  // Initialize Typed.js typing animation for roles
   useEffect(() => {
     if (typedRef.current && !typedInstanceRef.current) {
       typedInstanceRef.current = new Typed(typedRef.current, {
@@ -52,23 +87,17 @@ export const Hero = () => {
         {/* Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                Building Tomorrow's
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                Solutions
-              </span>
+            {/* Rotating Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 min-h-[8rem] sm:min-h-[6rem]">
+              <span
+                ref={titleTypedRef}
+                className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent"
+              ></span>
             </h1>
 
-            <p className="text-lg md:text-xl font-medium mb-4 transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
-              One Line of Code at a Time
-            </p>
-
-            {/* Typing Animation */}
+            {/* Typing Animation for roles */}
             <p
-              className="text-xl md:text-2xl font-semibold mt-3 mb-6 min-h-[2rem] transition-colors duration-300"
+              className="text-xl md:text-2xl font-semibold mb-6 min-h-[2rem] transition-colors duration-300"
               style={{ color: 'var(--text-secondary)' }}
             >
               <span ref={typedRef}></span>
