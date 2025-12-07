@@ -5,6 +5,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Dock from './components/Dock';
 import { Footer } from './components/Footer';
 import { SplashScreen } from './components/SplashScreen';
+import { AnimatedBackground } from './components/AnimatedBackground';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
@@ -39,7 +40,10 @@ function App() {
       {showSplash && !hasShownSplash && (
         <SplashScreen onComplete={handleSplashComplete} />
       )}
-      <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+      <div className="min-h-screen relative" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        {/* Animated background effects */}
+        <AnimatedBackground />
+
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
