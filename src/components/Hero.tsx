@@ -1,9 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Typed from 'typed.js';
 import { siteData } from '../data/siteData';
 import ScaleTiltReveal from './scroll/ScaleTiltReveal';
+import { LiquidCursor } from './LiquidCursor';
+import { MagneticWrapper } from './MagneticWrapper';
 
 export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
@@ -12,6 +14,17 @@ export const Hero = () => {
   const titleTypedRef = useRef<HTMLSpanElement>(null);
   const typedInstanceRef = useRef<Typed | null>(null);
   const titleTypedInstanceRef = useRef<Typed | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detect desktop for cursor effect
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024 && !('ontouchstart' in window));
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   // Initialize Typed.js for rotating titles
   useEffect(() => {
@@ -82,7 +95,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300">
+    <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300" style={{ cursor: isDesktop ? 'none' : 'default' }}>
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 gap-12 items-center">
         {/* Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
@@ -113,33 +126,40 @@ export const Hero = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button
-                onClick={scrollToProjects}
-                className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-lg hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg shadow-purple-500/50"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: '0 20px 40px rgba(99, 102, 241, 0.4)',
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Projects →
-              </motion.button>
-              {hasResume && (
-                <motion.a
-                  href={siteData.resumePath}
-                  download
-                  className="px-8 py-3 glass rounded-lg font-semibold text-lg transition-all text-center hover:opacity-90"
-                  style={{ color: 'var(--text-primary)' }}
-                  whileHover={{ scale: 1.05 }}
+              <MagneticWrapper strength={0.4}>
+                <motion.button
+                  onClick={scrollToProjects}
+                  className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-lg hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg shadow-purple-500/50"
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: '0 20px 40px rgba(99, 102, 241, 0.4)',
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Download Resume
-                </motion.a>
+                  View Projects →
+                </motion.button>
+              </MagneticWrapper>
+              {hasResume && (
+                <MagneticWrapper strength={0.4}>
+                  <motion.a
+                    href={siteData.resumePath}
+                    download
+                    className="px-8 py-3 glass rounded-lg font-semibold text-lg transition-all text-center hover:opacity-90"
+                    style={{ color: 'var(--text-primary)' }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Download Resume
+                  </motion.a>
+                </MagneticWrapper>
               )}
             </div>
           </div>
         </ScaleTiltReveal>
       </div>
+
+      {/* Liquid Cursor Effect */}
+      {isDesktop && <LiquidCursor isActive={true} />}
     </section>
   );
 };
