@@ -1,8 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Dock from './components/Dock';
 import { Footer } from './components/Footer';
+import { SplashScreen } from './components/SplashScreen';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
@@ -14,9 +16,29 @@ import { Arsenal } from './pages/Arsenal';
 
 function App() {
   const location = useLocation();
+  const [showSplash, setShowSplash] = useState(true);
+  const [hasShownSplash, setHasShownSplash] = useState(false);
+
+  useEffect(() => {
+    // Check if splash has been shown in this session
+    const splashShown = sessionStorage.getItem('splashShown');
+    if (splashShown) {
+      setShowSplash(false);
+      setHasShownSplash(true);
+    }
+  }, []);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    setHasShownSplash(true);
+    sessionStorage.setItem('splashShown', 'true');
+  };
 
   return (
     <ThemeProvider>
+      {showSplash && !hasShownSplash && (
+        <SplashScreen onComplete={handleSplashComplete} />
+      )}
       <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>

@@ -53,11 +53,18 @@ export const Hero = () => {
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-              Hi, I'm{' '}
               <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                {siteData.name}
+                Building Tomorrow's
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Solutions
               </span>
             </h1>
+
+            <p className="text-lg md:text-xl font-medium mb-4 transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
+              One Line of Code at a Time
+            </p>
 
             {/* Typing Animation */}
             <p
