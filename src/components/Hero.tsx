@@ -92,7 +92,7 @@ export const Hero = () => {
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>
             {/* Rotating Title */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 min-h-[7rem] sm:min-h-[5rem]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 min-h-[7rem] sm:min-h-[5rem] text-white">
               <span
                 ref={titleTypedRef}
                 className="bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent"
