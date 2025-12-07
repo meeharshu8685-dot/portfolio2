@@ -17,9 +17,9 @@ export function LiquidEffectAnimation() {
         const app = LiquidBackground(canvas);
         // Use a dark gradient image that matches the portfolio theme
         app.loadImage('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200');
-        app.liquidPlane.material.metalness = 0.8;
-        app.liquidPlane.material.roughness = 0.3;
-        app.liquidPlane.uniforms.displacementScale.value = 3.5;
+        app.liquidPlane.material.metalness = 0.9;
+        app.liquidPlane.material.roughness = 0.2;
+        app.liquidPlane.uniforms.displacementScale.value = 2.5;
         app.setRain(false);
         window.__liquidApp = app;
       }
@@ -36,7 +36,7 @@ export function LiquidEffectAnimation() {
 
   return (
     <div
-      className="absolute inset-0 z-0 w-full h-full overflow-hidden opacity-70"
+      className="absolute inset-0 z-0 w-full h-full overflow-hidden opacity-70 transition-all duration-500"
       style={{ fontFamily: '"Montserrat", serif' }}
     >
       <canvas ref={canvasRef} id="liquid-canvas" className="absolute inset-0 w-full h-full" />
