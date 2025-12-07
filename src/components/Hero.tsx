@@ -47,7 +47,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300 home-hero-gradient">
+    <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300">
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 gap-12 items-center">
         {/* Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
