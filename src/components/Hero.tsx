@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Typed from 'typed.js';
 import { siteData } from '../data/siteData';
 import ScaleTiltReveal from './scroll/ScaleTiltReveal';
+import { LiquidEffectAnimation } from './ui/liquid-effect-animation';
 
 export const Hero = () => {
   const hasResume = false; // Set to true when resume is uploaded
@@ -83,6 +84,9 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-screen w-full px-6 pt-24 transition-colors duration-300">
+      {/* Liquid Background Effect */}
+      <LiquidEffectAnimation />
+
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 gap-12 items-center">
         {/* Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">

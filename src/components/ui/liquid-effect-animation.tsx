@@ -1,76 +1,60 @@
-// "use client" - not required for Vite, but kept to match the provided snippet
-"use client";
-
-import { useEffect, useRef } from "react";
+"use client"
+import { useEffect, useRef } from "react"
 
 export function LiquidEffectAnimation() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const appRef = useRef<any>(null)
 
   useEffect(() => {
-    let app: any | undefined;
+    if (!canvasRef.current) return
 
-    const init = async () => {
-      if (!canvasRef.current) return;
-
-      try {
-        // Dynamically import the liquid background module at runtime
-        const mod: any = await import(
-          /* @vite-ignore */ "https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js"
-        );
-
-        const LiquidBackground = mod.default ?? mod.LiquidBackground ?? mod;
-        const canvas = document.getElementById("liquid-canvas") as HTMLCanvasElement | null;
-        if (!canvas || !LiquidBackground) return;
-
-        app = LiquidBackground(canvas);
-
-        app.loadImage(
-          "https://i.pinimg.com/1200x/38/71/c9/3871c9c7a6066df6763c97dc3285c907.jpg"
-        );
-
-        app.liquidPlane.material.metalness = 0.75;
-        app.liquidPlane.material.roughness = 0.25;
-        app.liquidPlane.uniforms.displacementScale.value = 5;
-
+    // Load the script dynamically
+    const script = document.createElement("script")
+    script.type = "module"
+    script.textContent = `
+      import LiquidBackground from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js';
+      const canvas = document.getElementById('liquid-canvas');
+      if (canvas) {
+        const app = LiquidBackground(canvas);
+        // Use a dark gradient image that matches the portfolio theme
+        app.loadImage('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200');
+        app.liquidPlane.material.metalness = 0.8;
+        app.liquidPlane.material.roughness = 0.3;
+        app.liquidPlane.uniforms.displacementScale.value = 3.5;
         app.setRain(false);
-
         window.__liquidApp = app;
-      } catch (error) {
-        console.error("Failed to initialize LiquidEffectAnimation:", error);
       }
-    };
-
-    void init();
+    `
+    document.body.appendChild(script)
 
     return () => {
-      if (app && typeof app.dispose === "function") {
-        app.dispose();
+      if (window.__liquidApp && window.__liquidApp.dispose) {
+        window.__liquidApp.dispose()
       }
-      if (window.__liquidApp && typeof window.__liquidApp.dispose === "function") {
-        window.__liquidApp.dispose();
-      }
-      window.__liquidApp = undefined;
-    };
-  }, []);
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <div
-      className="fixed inset-0 m-0 w-full h-full touch-none overflow-hidden"
+      className="absolute inset-0 -z-10 w-full h-full overflow-hidden opacity-40"
       style={{ fontFamily: '"Montserrat", serif' }}
     >
-      <canvas
-        ref={canvasRef}
-        id="liquid-canvas"
-        className="fixed inset-0 w-full h-full"
+      <canvas ref={canvasRef} id="liquid-canvas" className="absolute inset-0 w-full h-full" />
+      {/* Gradient overlay to match theme colors */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(236, 72, 153, 0.3) 100%)',
+          mixBlendMode: 'overlay'
+        }}
       />
     </div>
-  );
+  )
 }
 
 declare global {
   interface Window {
-    __liquidApp?: any;
+    __liquidApp?: any
   }
 }
-
-
