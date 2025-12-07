@@ -54,7 +54,7 @@ export default function Dock() {
     const location = useLocation();
 
     return (
-        <div className="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 hidden sm:block">
+        <div className="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-50">
             <motion.div
                 onMouseMove={(e) => mouseX.set(e.pageX)}
                 onMouseLeave={() => mouseX.set(Infinity)}
