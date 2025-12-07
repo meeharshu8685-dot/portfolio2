@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react"
 
 export function LiquidEffectAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const appRef = useRef<any>(null)
 
   useEffect(() => {
     if (!canvasRef.current) return
