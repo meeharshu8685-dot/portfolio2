@@ -36,10 +36,10 @@ export function LiquidEffectAnimation() {
 
   return (
     <div
-      className="absolute inset-0 z-0 w-full h-full overflow-hidden opacity-70 transition-all duration-500"
+      className="absolute inset-0 z-0 w-full h-full overflow-hidden opacity-70 transition-all duration-500 pointer-events-none"
       style={{ fontFamily: '"Montserrat", serif' }}
     >
-      <canvas ref={canvasRef} id="liquid-canvas" className="absolute inset-0 w-full h-full" />
+      <canvas ref={canvasRef} id="liquid-canvas" className="absolute inset-0 w-full h-full pointer-events-none" />
       {/* Gradient overlay to match theme colors */}
       <div
         className="absolute inset-0 pointer-events-none"
