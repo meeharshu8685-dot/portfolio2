@@ -9,7 +9,7 @@ export const Home = () => {
     <div className="relative min-h-screen overflow-hidden home-hero-gradient">
       <AnimatedPage>
         <Hero />
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
           <div className="relative rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
             <div className="p-6 sm:p-10">
               <ScaleTiltReveal maxTilt={14}>
@@ -18,7 +18,7 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
           <div className="relative rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
             <div className="p-6 sm:p-10">
               <ScaleTiltReveal maxTilt={12}>
