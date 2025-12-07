@@ -87,7 +87,7 @@ export const Hero = () => {
       {/* Liquid Background Effect */}
       <LiquidEffectAnimation />
 
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 gap-12 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 gap-12 items-center">
         {/* Text + Typing Animation */}
         <ScaleTiltReveal maxTilt={15} className="text-left">
           <div>

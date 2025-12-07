@@ -36,7 +36,7 @@ export function LiquidEffectAnimation() {
 
   return (
     <div
-      className="absolute inset-0 -z-10 w-full h-full overflow-hidden opacity-40"
+      className="absolute inset-0 z-0 w-full h-full overflow-hidden opacity-70"
       style={{ fontFamily: '"Montserrat", serif' }}
     >
       <canvas ref={canvasRef} id="liquid-canvas" className="absolute inset-0 w-full h-full" />
@@ -44,7 +44,7 @@ export function LiquidEffectAnimation() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(236, 72, 153, 0.3) 100%)',
+          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.3) 50%, rgba(236, 72, 153, 0.4) 100%)',
           mixBlendMode: 'overlay'
         }}
       />
