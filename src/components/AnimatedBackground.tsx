@@ -1,15 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-interface Particle {
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    duration: number;
-    delay: number;
-}
-
 export const AnimatedBackground = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
